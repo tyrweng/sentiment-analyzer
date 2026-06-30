@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Node
+node_modules/
+dist/
+
+# ML artifacts
+ml/models/*.joblib
+ml/data/raw/*
+ml/data/processed/*
+
+# OS
+.DS_Store
