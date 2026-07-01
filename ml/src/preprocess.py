@@ -1,4 +1,4 @@
-def clean_data(text):
+def clean_text(text):
     # lowercase text, expand contractions, remove punctuation, normalize whitespace,
     # strip leading/trailing whitespace
     # lowercase text
