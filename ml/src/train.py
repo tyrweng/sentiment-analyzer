@@ -45,10 +45,8 @@ def train_model():
         random_state=42
     ).fit(train_vectors, train_labels)
 
-    return (
-        reg,
-        vectorizer,
-        train_vectors, train_data,
-        dev_vectors, dev_data,
-        test_vectors, test_data
-    )
+    train = (train_vectors, train_text, train_labels)
+    dev = (dev_vectors, dev_text, dev_labels)
+    test = (test_vectors, test_text, test_labels)
+
+    return (reg, vectorizer, train, dev, test)
