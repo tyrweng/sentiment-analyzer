@@ -16,7 +16,7 @@ def load_imdb_dataset():
     #         num_rows: 50000
     #     })
     # })
-    # Each row looks like: {'text': 'I loved this movie!', 'label': 1} 
+    # Each row looks like: {'text': 'I loved this movie!', 'l               abel': 1} 
     # 0 = negative, 1 = positive
-    dataset = load_dataset("imdb")
+    dataset = load_dataset("stanfordnlp/imdb")
     return dataset["train"], dataset["test"]
