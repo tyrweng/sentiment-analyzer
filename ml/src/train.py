@@ -33,5 +33,5 @@ def train_model():
         solver='liblinear',
         random_state=42
     ).fit(train_vectors, train_labels)
-    
-    return reg, vectorizer, test_vectors, test_labels
+
+    return reg, vectorizer, test_vectors, test_text, test_labels
