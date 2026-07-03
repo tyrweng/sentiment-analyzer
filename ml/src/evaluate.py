@@ -1,5 +1,5 @@
 import sklearn
-from src.train import train_model
+from train import train_model
 
 def evaluate_model(mode):
     model, vectorizer, train, dev, test = train_model()
