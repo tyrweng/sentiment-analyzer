@@ -15,9 +15,11 @@ def evaluate_model(mode):
         vectors = test_vectors
         labels = test_labels
         text = test_text
+    else:
+        raise ValueError("Invalid mode. Choose 'dev' or 'test'.")
 
     # Accuracy: Out of all reviews, how many were correctly classified as
-    # positive or negative
+    # positive or negative  
     # Precision: Out of all reviews classified as positive,
     # how many were actually positive
     # Recall: Out of all actual positive reviews, how many were correctly
