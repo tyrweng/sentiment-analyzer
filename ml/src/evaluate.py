@@ -49,4 +49,9 @@ def evaluate_model(mode):
                         for i, (text, label, pred) in
                         enumerate(zip(text, labels, preds))
                         if label != pred]
-    print("Misclassified Reviews:\n", misclassified)
+    # print("Misclassified Reviews:\n", misclassified)
+    print("First 10 Misclassified Reviews:")
+    for text, label, pred, prob in misclassified[:10]:
+        print(f"Text: {text}")
+        print(f"Actual: {label}, Predicted: {pred}, Probability: {prob}")
+        print()
