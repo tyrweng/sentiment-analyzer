@@ -55,3 +55,5 @@ def evaluate_model(mode):
         print(f"Text: {text}")
         print(f"Actual: {label}, Predicted: {pred}, Confidences: [{prob_neg}, {prob_pos}]")
         print()
+    
+    return model, vectorizer
