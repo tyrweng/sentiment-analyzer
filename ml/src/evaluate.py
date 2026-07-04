@@ -1,3 +1,4 @@
+import numpy as np
 import sklearn
 from train import train_model
 
@@ -45,13 +46,12 @@ def evaluate_model(mode):
     probs = model.predict_proba(vectors)
 
     # Loop through reviews and filter out correctly classified ones, leaving only misclassified reviews
-    misclassified = [(text, label, pred, probs[i][pred])
-                        for i, (text, label, pred) in
-                        enumerate(zip(text, labels, preds))
-                        if label != pred]
+    misclassified = [(text[i], labels[i], preds[i], probs[i][0], probs[i][1])
+                        for i in range(len(preds)) if preds[i] != labels[i]]
+    
     # print("Misclassified Reviews:\n", misclassified)
     print("First 10 Misclassified Reviews:")
-    for text, label, pred, prob in misclassified[:10]:
+    for text, label, pred, prob_neg, prob_pos in misclassified[:10]:
         print(f"Text: {text}")
-        print(f"Actual: {label}, Predicted: {pred}, Probability: {prob}")
+        print(f"Actual: {label}, Predicted: {pred}, Confidences: [{prob_neg}, {prob_pos}]")
         print()
