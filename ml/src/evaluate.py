@@ -1,12 +1,28 @@
+import joblib
 import numpy as np
 import sklearn
+from load_data import load_imdb_dataset
 from train import train_model
 
 def evaluate_model(mode):
-    model, vectorizer, train, dev, test = train_model()
-    train_vectors, train_text, train_labels = train
-    dev_vectors, dev_text, dev_labels = dev
-    test_vectors, test_text, test_labels = test 
+    model = joblib.load("../models/model.joblib")
+    vectorizer = joblib.load("../models/vectorizer.joblib")
+
+    train_data, dev_data, test_data = load_imdb_dataset()
+
+    train_text = train_data["text"]
+    train_labels = train_data["label"]
+
+    dev_text = dev_data["text"]
+    dev_labels = dev_data["label"]
+
+    test_text = test_data["text"]
+    test_labels = test_data["label"]
+
+    # Vectorize the text data using the same vectorizer
+    train_vectors = vectorizer.transform(train_text)
+    dev_vectors = vectorizer.transform(dev_text)
+    test_vectors = vectorizer.transform(test_text)
 
     if mode == "dev":
         vectors = dev_vectors
@@ -55,5 +71,3 @@ def evaluate_model(mode):
         print(f"Text: {text}")
         print(f"Actual: {label}, Predicted: {pred}, Confidences: [{prob_neg}, {prob_pos}]")
         print()
-    
-    return model, vectorizer

@@ -1,20 +1,12 @@
+import joblib
 from load_data import load_imdb_dataset
 from preprocess import clean_text
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
 def train_model():
     # load the IMDB dataset
-    train_data, test_data = load_imdb_dataset()
-    split = train_data.train_test_split(test_size=0.2, seed=42)
-    train_data = split["train"]
-    dev_data = split["test"]
-
-    # apply the clean_data function to the text data in both train and test datasets
-    train_data = train_data.map(lambda row: {"text": clean_text(row["text"])})
-    dev_data = dev_data.map(lambda row: {"text": clean_text(row["text"])})
-    test_data = test_data.map(lambda row: {"text": clean_text(row["text"])})
+    train_data, dev_data, test_data = load_imdb_dataset()
 
     # extract the text and labels from the datasets
     train_text = train_data["text"]
@@ -48,3 +40,8 @@ def train_model():
     test = (test_vectors, test_text, test_labels)
 
     return (reg, vectorizer, train, dev, test)
+
+if __name__ == "__main__":
+    model, vectorizer, train, dev, test = train_model()
+    joblib.dump(model, "../models/model.joblib")
+    joblib.dump(vectorizer, "../models/vectorizer.joblib")

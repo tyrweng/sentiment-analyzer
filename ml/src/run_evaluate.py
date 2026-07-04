@@ -1,3 +1,4 @@
+import joblib
 import sys
 from evaluate import evaluate_model
 
@@ -7,6 +8,10 @@ def main():
         print("<mode> should be either 'dev' or 'test'")
         sys.exit(1)
     mode = sys.argv[1]
+    if mode not in ["dev", "test"]:
+        print("Invalid mode. Choose 'dev' or 'test'.")
+        sys.exit(1)
+
     evaluate_model(mode)
 
 if __name__ == "__main__":
