@@ -7,11 +7,9 @@ from sklearn.linear_model import LogisticRegression
 def train_model():
     # load the IMDB dataset
     train_data, test_data = load_imdb_dataset()
-    train_data, dev_data = train_test_split(
-        train_data,
-        test_size=0.2,
-        random_state=42
-    ).values()  # values used to avoid scikit-leaern indexing issues with DatasetDict
+    split = train_data.train_test_split(test_size=0.2, seed=42)
+    train_data = split["train"]
+    dev_data = split["test"]
 
     # apply the clean_data function to the text data in both train and test datasets
     train_data = train_data.map(lambda row: {"text": clean_text(row["text"])})
