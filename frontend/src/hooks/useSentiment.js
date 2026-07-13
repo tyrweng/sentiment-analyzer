@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { predictSentiment } from '../api/sentiment';
+import { useState } from "react";
+import debounce from "lodash.debounce";
+import { predictSentiment } from "../api/sentiment";
 
 export function useSentiment() {
     const [sentiment, setSentiment] = useState(null);
@@ -22,11 +23,15 @@ export function useSentiment() {
         }
     }
 
+    const debouncedAnalyzeSentiment = useCallback(
+        debounce(analyzeSentiment, 400), []
+    );
+
     return {
         sentiment,
         confidenceScores,
         loading,
-        error,
-        analyzeSentiment
-    }
+        error, 
+        debouncedAnalyzeSentiment 
+    };
 }
