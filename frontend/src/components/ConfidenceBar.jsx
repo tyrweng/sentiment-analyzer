@@ -1,4 +1,4 @@
-export default function ConfidenceBar({ sentiment, confidences }){
+export default function ConfidenceBar({ sentiment, confidence }){
     const sentimentColor = {
         positive: "#4CAF50",
         negative: "#F44336",
