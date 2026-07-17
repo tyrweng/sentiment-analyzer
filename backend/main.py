@@ -4,8 +4,8 @@ from ml.src.predict_sentiment import predict_sentiment
 from models import SentimentRequest, SentimentResponse
 
 def startup():
-    model = joblib.load("../models/model.joblib")
-    vectorizer = joblib.load("../models/vectorizer.joblib")
+    model = joblib.load("./ml/models/model.joblib")
+    vectorizer = joblib.load("./ml/models/vectorizer.joblib")
     app.state.model = model
     app.state.vectorizer = vectorizer
 
@@ -14,8 +14,12 @@ def shutdown():
     
 app = FastAPI()
 
-app.add_event_handler("startup", startup)
-app.add_event_handler("shutdown", shutdown)
+@app.on_event("startup")
+async def startup_event():
+    startup()
+@app.on_event("shutdown")
+async def shutdown_event():
+    shutdown()
 
 @app.post("/predict")
 async def predict_route(request: SentimentRequest):

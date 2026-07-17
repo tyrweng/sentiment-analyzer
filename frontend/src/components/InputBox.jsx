@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function InputBox({ value, onChange }) {
     return (
         <div className="input-box">

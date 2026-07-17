@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { useSentiment } from '../hooks/useSentiment';
-import InputBox from '../components/InputBox';
-import ResultCard from '../components/ResultCard';
-import ConfidenceBar from '../components/ConfidenceBar';
+import React from "react"
+import { useState } from "react";
+import { useSentiment } from "../hooks/useSentiment";
+import InputBox from "../components/InputBox";
+import ResultCard from "../components/ResultCard";
+import ConfidenceBar from "../components/ConfidenceBar";
 
 export default function SentimentPage() {
     const [text, setText] = useState('');

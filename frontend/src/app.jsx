@@ -1,3 +1,4 @@
+import React from "react"
 import SentimentPage from "./pages/SentimentPage"
 
 export default function App() {

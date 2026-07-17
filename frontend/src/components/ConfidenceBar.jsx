@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function ConfidenceBar({ sentiment, confidence }){
     const sentimentColor = {
         positive: "#4CAF50",
@@ -14,7 +16,7 @@ export default function ConfidenceBar({ sentiment, confidence }){
             </div>
 
             <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${percent}`, background: sentimentColor}}/>            </div>
+                <div className="bar-fill" style={{ width: `${percent}%`, background: sentimentColor}}/>            </div>
         </div>
     )
 }
