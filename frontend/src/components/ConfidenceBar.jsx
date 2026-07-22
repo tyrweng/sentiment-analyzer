@@ -11,8 +11,12 @@ export default function ConfidenceBar({ sentiment, confidence }){
 
     return (
         <div className="sentiment-bar">
-            <div className="sentiment-label" style={{ color: sentimentColor}}>
-                {sentiment.toUpperCase()} - {percent}%
+            <div className="sentiment-label">
+                Sentiment: <span style={{ color: sentimentColor }}>
+                    {sentiment.toUpperCase()}
+                </span>
+                <br />
+                Confidence: {percent}%
             </div>
 
             <div className="bar-track">

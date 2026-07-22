@@ -17,25 +17,25 @@ export default function SentimentPage() {
 
     return (
         <div className="sentiment-page">
-            <h1>Sentiment Analyzer</h1>
-
-            <InputBox
-                value={text}
-                onChange={(t) => {
-                    setText(t);
-                    debouncedAnalyzeSentiment(t);
-                }}
-            />
-
-            {loading && <p>Analyzing sentiment...</p>}
-            {error && <p className="error">Error: {error}</p>}
-            
-            {sentiment && confidenceScores && (
-                <ResultCard
-                    sentiment={sentiment}
-                    confidenceScores={confidenceScores}
+            <div className="sentiment-container">
+                <InputBox
+                    value={text}
+                    onChange={(t) => {
+                        setText(t);
+                        debouncedAnalyzeSentiment(t);
+                    }}
                 />
-            )}
+
+                {loading && <p>Analyzing sentiment...</p>}
+                {error && <p className="error">Error: {error}</p>}
+                
+                {sentiment && confidenceScores && (
+                    <ResultCard
+                        sentiment={sentiment}
+                        confidenceScores={confidenceScores}
+                    />
+                )}
+            </div>
         </div>
     )
 }
